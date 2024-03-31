@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,7 +12,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { registerAction } from "@/actions/authActions";
+import { useFormState } from "react-dom";
+import AuthSubmitBtn from "./AuthSubmitBtn";
+
+
+const initState = {
+    status : 0,
+    errors : {}
+}
 const Register = () => {
+    const [state , formAction] = useFormState(registerAction , initState)
   return (
     <Card>
       <CardHeader>
@@ -19,24 +30,26 @@ const Register = () => {
         <CardDescription>Register to get into Community!</CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
-        <form>
+        <form action={formAction}>
           <div className="space-y-1">
-            <Label htmlFor="email">Name</Label>
+            <Label htmlFor="name">Name</Label>
             <Input
               id="name"
               type="text"
               name="name"
               placeholder="Enter your name"
             />
+            <span className="text-red-500">{state?.errors?.name}</span>
           </div>
           <div className="space-y-1">
-            <Label htmlFor="email">Username</Label>
+            <Label htmlFor="username">Username</Label>
             <Input
               id="username"
               type="text"
               name="username"
               placeholder="Enter your username"
             />
+            <span className="text-red-500">{state?.errors?.username}</span>
           </div>
           <div className="space-y-1">
             <Label htmlFor="email">Email</Label>
@@ -46,6 +59,7 @@ const Register = () => {
               name="email"
               placeholder="Enter your email"
             />
+            <span className="text-red-500">{state?.errors?.email}</span>
           </div>
           <div className="space-y-1">
             <Label htmlFor="password">Password</Label>
@@ -55,17 +69,19 @@ const Register = () => {
               name="password"
               placeholder="Enter your password"
             />
+            <span className="text-red-500">{state?.errors?.password}</span>
           </div>
           <div className="space-y-1">
             <Label htmlFor="cpassword">Confirm Password</Label>
             <Input
               id="cpassword"
-              type="cpassword"
-              name="cpassword"
+              type="password"
+              name="password_confirmation"
               placeholder="Enter your password"
             />
+            <span className="text-red-500">{state?.errors?.password}</span>
           </div>
-          <Button className="w-full mt-3">Login</Button>
+          <AuthSubmitBtn/>
         </form>
       </CardContent>
     </Card>

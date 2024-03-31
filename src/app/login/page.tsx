@@ -17,12 +17,12 @@ import Image from "next/image";
 export default function login() {
   return (
     <div className="h-screen flex justify-center items-center flex-col">
-        <div className="p-5 flex justify-center items-center flex-col">
-        <Image src="/images/logo_512.png" alt="community-logo" width={100} height={100}/>
-        <h1 className="font-bold">Freelancegram</h1>
+        {/* <div className="pt-10 flex justify-center items-center flex-col"> */}
+        <Image src="/images/logo_512.png" alt="community-logo" width={80} height={80}/>
+        <p className="font-bold">Freelancegram</p>
         <p>A community for freelancers!</p>
-        </div>
-      <Tabs defaultValue="login" className="w-[400px]">
+        {/* </div> */}
+      <Tabs defaultValue="login" className="w-full p-2 md:w-[500px] ">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="login">login</TabsTrigger>
           <TabsTrigger value="register">register</TabsTrigger>
