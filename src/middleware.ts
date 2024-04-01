@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 
 
 export async function middleware(request: NextRequest){
+    //@ts-ignore
     const supabase = createClient(cookies())
     const {data } = await supabase.auth.getUser();
     if(data == null){
@@ -13,5 +14,5 @@ export async function middleware(request: NextRequest){
 }
 
 export const config = {
-    matcher : []
+    matcher : ["/"]
 }

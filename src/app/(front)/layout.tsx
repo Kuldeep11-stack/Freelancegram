@@ -1,15 +1,22 @@
 import AppNav from "@/components/common/AppNav";
 import MobileAppNav from "@/components/common/MobileAppNav";
+import { createClient } from "@/lib/supabase/supabaseServer";
+import { cookies } from "next/headers";
 
-export default function FrontLayout({
+
+
+export default async function FrontLayout({
     children,
   }: Readonly<{
     children: React.ReactNode;
   }>) {
+    //@ts-ignore
+    const supabase = createClient(cookies());
+    const {data} = await supabase.auth.getSession();
     return (
       <div className="container relative h-screen">
         <MobileAppNav/>
-        <AppNav/>
+        <AppNav user ={data.session?.user!}/>
         {children}
       </div>
     );
