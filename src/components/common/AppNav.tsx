@@ -13,7 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AddPosts from "../posts/AddPosts";
 import { User as SupabaseUser} from "@supabase/supabase-js";
-const AppNav = ({user} : {user:SupabaseUser}) => {
+const AppNav = ({user} : {user:SupabaseUser}) =>  {
   const pathname = usePathname();
   return (
     <nav className="hidden md:flex justify-between items-center p-2 ">
